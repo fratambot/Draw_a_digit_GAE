@@ -1,0 +1,59 @@
+body {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+h1 {
+  color: red;
+  font-family: 'Architects Daughter' !important;
+  font-size: 400% !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+#inputimage {
+  border-radius: 10px;
+  border: solid 2px black !important;
+}
+
+#pred_digit {
+  display: flex;
+  font-size: 150px;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-family: 'Architects Daughter' !important;
+}
+
+#input_group {
+  max-width: 400px;
+}
+
+#predchart {
+  align-items: center;
+}
+
+#fa_heart {
+  color: red;
+}
+
+.code {
+  font-size: 80%;
+}
+
+.tab {
+  margin-left: 20px !important;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.dbtab {
+  margin-left: 40px !important;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.bold {
+  font-weight: 600 !important;
+}
