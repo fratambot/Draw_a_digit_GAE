@@ -2,13 +2,15 @@ import json
 import numpy as np
 
 from flask import Flask, render_template, request, redirect
-#from flask_fontawesome import FontAwesome
-import tensorflow as tf
+#import tensorflow as tf
 
 from PIL import Image, ImageOps, ImageChops
 #from keras.preprocessing.image import load_img
 #from keras.preprocessing.image import img_to_array
 #from keras.models import load_model
+
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 app = Flask(__name__)
 #app.config['FONTAWESOME_STYLES'] = ['brands', 'solid']
@@ -18,7 +20,7 @@ model = None
 
 # def model_loader():
 #     global model
-#     model = load_model('model/32C5-P2_64C5-P2-128.h5')
+#     model = load_model('32C5-P2_64C5-P2-128.h5')
 
 
 def center_image(img):

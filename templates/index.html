@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Draw a digit</title>
-    <link rel="icon" href="data:,">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;600&display=swap" rel="stylesheet">
@@ -120,8 +120,8 @@
                 if you write a small digit the model will probabily misclassify because
                 of the padding.
               <p>  I didn't find interesting to implement magnification because
-                in a real scenario the problem should be approached
-                the other way around by training the model using images with different
+                in a real case scenario the problem should be approached
+                the other way around by training the model on images with different
                 sizes and offsets, but it is out of scope for this project. </p>
               <p> The app is deployed on <a href='https://cloud.google.com/appengine'>Google App Engine</a>
                 but you can download it from my github and run it on localhost following
