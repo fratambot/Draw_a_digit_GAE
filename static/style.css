@@ -6,10 +6,12 @@ h1 {
   color: red;
   font-family: 'Architects Daughter' !important;
   font-size: 400% !important;
+  text-align: center;
 }
 
 a {
   text-decoration: none !important;
+  word-break: break-all;
 }
 
 #inputimage {

@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Draw a digit</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;600&display=swap" rel="stylesheet">
@@ -95,9 +94,9 @@
                 </div>
               </div>
               <br>
-              <p> In cross-validation, over 10 epochs, the model reached <span class='bold'> 99.5% </span>
-              accuracy and it does not seem to overfit: </p>
-              <img class='py-3' src="static/images/perf.png">
+              <p> The 5-folds cross-validation accuracy of the model reached <span class='bold'> 99.5% </span>
+              after 10 epochs and it does not seem to overfit: </p>
+              <img class='py-3 w-100' src="static/images/perf.png">
             </div>
           </div>
         </div>
@@ -115,7 +114,7 @@
               <p> Before calling the classifier, the drawn digit is inverted, recentered and downscaled
                 in order to look like the digits in the <a href='http://yann.lecun.com/exdb/mnist/'>MNIST</a>
                 dataset on which the model is trained: </p>
-              <img class='py-1' src="static/images/preprocessing.png">
+              <img class='py-1 w-100' src="static/images/preprocessing.png">
               <p class='pb-0'> Notice that there is no magnification of the image and therefore,
                 if you write a small digit the model will probabily misclassify because
                 of the padding.

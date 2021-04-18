@@ -1,26 +1,17 @@
 import json
+import os
 import numpy as np
 
-from flask import Flask, render_template, request, redirect
-#import tensorflow as tf
+from flask import Flask, render_template, request
 
 from PIL import Image, ImageOps, ImageChops
-#from keras.preprocessing.image import load_img
-#from keras.preprocessing.image import img_to_array
-#from keras.models import load_model
-
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+from keras.preprocessing.image import load_img, img_to_array
+from keras.models import load_model
 
 app = Flask(__name__)
-#app.config['FONTAWESOME_STYLES'] = ['brands', 'solid']
-#fa = FontAwesome(app)
-model = None
 
 
-# def model_loader():
-#     global model
-#     model = load_model('32C5-P2_64C5-P2-128.h5')
+MODEL = load_model("32C5-P2_64C5-P2-128.h5")
 
 
 def center_image(img):
@@ -42,15 +33,15 @@ def center_image(img):
     return ImageChops.offset(img, -shiftX, -shiftY)
 
 
-# def prepare_image(img):
-#     img = ImageOps.invert(img)
-#     img = center_image(img)
-#     img = img.resize((28, 28))
-#     img = img_to_array(img)
-#     img = img.reshape(1, 28, 28, 1)
-#     img = img.astype('float32')
-#     img = (img / 255.0) - 0.5
-#     return img
+def prepare_image(img):
+    img = ImageOps.invert(img)
+    img = center_image(img)
+    img = img.resize((28, 28))
+    img = img_to_array(img)
+    img = img.reshape(1, 28, 28, 1)
+    img = img.astype('float32')
+    img = (img / 255.0) - 0.5
+    return img
 
 
 @app.route('/')
@@ -58,25 +49,28 @@ def root():
     return render_template('index.html')
 
 
-@app.route('/prediction', methods=['POST'])
+@app.route("/favicon.ico")
+def favicon():
+    return app.send_static_file("images/favicon.ico")
+
+
+@app.route('/prediction', methods=['GET', 'POST'])
 def predict_digit():
     res_json = {}
-##    raw_img = Image.open(request.files['img']).convert('L')
-##    img = prepare_image(raw_img)
-
-    # model_loader()
-##    predictions = model.predict(img)
-##    probs = predictions[0]*100
-##    pred = str(np.argmax(predictions))
-##    res_json['probs'] = probs.tolist()
-##    res_json['pred'] = pred
-    res_json['pred'] = 5
-    res_json['probs'] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    raw_img = Image.open(request.files['img']).convert('L')
+    img = prepare_image(raw_img)
+    if MODEL is not None:
+        predictions = MODEL.predict(img)
+        probs = predictions[0]*100
+        pred = str(np.argmax(predictions))
+        res_json['probs'] = probs.tolist()
+        res_json['pred'] = pred
 
     return json.dumps(res_json)
 
 
+#assert os.path.exists(MODEL_PATH), "no saved model"
+
+
 if __name__ == '__main__':
-    print(("* Loading model, please wait..."))
-# model_loader()  # model should always be loaded here, once
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='0.0.0.0', debug=True)
